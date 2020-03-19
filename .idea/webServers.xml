@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="3b25c0d5-727e-431e-b0f8-da56ff5989b6" name="mamp" url="http://localhost/phpdojo">
+        <fileTransfer port="0" mountedRoot="/Applications/MAMP/htdocs/phpdojo" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
