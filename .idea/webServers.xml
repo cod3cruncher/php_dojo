@@ -2,8 +2,16 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="3b25c0d5-727e-431e-b0f8-da56ff5989b6" name="mamp" url="http://localhost/phpdojo">
-        <fileTransfer port="0" mountedRoot="/Applications/MAMP/htdocs/phpdojo" accessType="MOUNT" />
+      <webServer id="3b25c0d5-727e-431e-b0f8-da56ff5989b6" name="mamp" url="http://localhost/">
+        <fileTransfer port="0" mountedRoot="/Applications/MAMP/htdocs" accessType="MOUNT" />
+      </webServer>
+      <webServer id="aa1f445f-93ab-4ead-82a8-274c9d90603c" name="raspi" url="http://192.168.178.42">
+        <fileTransfer host="192.168.178.42" port="22" privateKey="$USER_HOME$/.ssh/id_rsa" rootFolder="/var/www/html/" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
       </webServer>
     </option>
   </component>

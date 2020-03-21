@@ -6,7 +6,7 @@
 </head>
 <body>
 <p>Die Nachricht: <?= $message ?></p>
-<p>Some other stuff ...</p>
+<br>
 <?= $content ?>
 </body>
 </html>
