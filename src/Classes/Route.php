@@ -23,15 +23,15 @@ final class Route implements RouteFacade
         $this->routes = array();
     }
 
-    public static function add($expression, $classAtFunction, $method = 'get') {
+    public static function add($expression, $classAtFunction, $method = 'get'): void {
         static::instance()->doAdd($expression, $classAtFunction, $method);
     }
 
-    public static function resource($uri, $controllerName) {
+    public static function resource($uri, $controllerName): void {
         static::instance()->doRessource($uri, $controllerName);
     }
 
-    public static function run($basepath = '/') {
+    public static function run($basepath = '/'): void {
         static::instance()->doRun($basepath);
     }
 
@@ -45,7 +45,7 @@ final class Route implements RouteFacade
 
     /************* the hooks *************/
 
-    private function doAdd($expression, $classAtFunction, $method) {
+    private function doAdd($expression, $classAtFunction, $method): void {
         $classAndFunction = explode('@', $classAtFunction);
         array_push($this->routes, Array(
             'expression' => $expression,
@@ -55,7 +55,7 @@ final class Route implements RouteFacade
         ));
     }
 
-    private final function doRessource($uri, $controllerName) {
+    private final function doRessource($uri, $controllerName): void {
         $controller = ControllerContainer::instance()->getController($controllerName);
         if (is_a($controller, 'PHPDojo\Controllers\CrudController')) {
             $newUri = '';
@@ -68,9 +68,13 @@ final class Route implements RouteFacade
                         $newUri = $uri . '/create';
                         break;
                     case 'show':
-                    case 'update':
-                    case 'delete':
                         $newUri = $uri . '/([0-9]*)';
+                        break;
+                    case 'update':
+                        $newUri = $uri . '/update';
+                        break;
+                    case 'delete':
+                        $newUri = $uri . '/delete';
                         break;
                     case 'edit':
                         $newUri = $uri . '/([0-9]*)/edit';
@@ -84,7 +88,7 @@ final class Route implements RouteFacade
         }
     }
 
-    private function doRun($basepath = '/') {
+    private function doRun($basepath = '/'): void {
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);//Parse Uri
         if (isset($parsed_url['path'])) {
             $path = $parsed_url['path'];
@@ -117,7 +121,19 @@ final class Route implements RouteFacade
                     }
 //                  call_user_func_array($route['function'], $matches);
                     $controller = ControllerContainer::instance()->getController($route['class']);
-                    call_user_func_array(array($controller, $route['function']), $matches);
+
+                    //login functionality
+                    if (call_user_func_array(array($controller, 'isLoginNeeded'), [])) {
+                        if (isset($_SESSION['user']) && $_SESSION['user'] != null) {
+                            call_user_func_array(array($controller, $route['function']), $matches);
+                        }
+                        else {
+                            header('Location: /');
+                        }
+                    }
+                    else {
+                        call_user_func_array(array($controller, $route['function']), $matches);
+                    }
                     $route_match_found = true;
                     break;
                 }
@@ -142,13 +158,12 @@ final class Route implements RouteFacade
 
     }
 
-    private function doPathNotFound($function) {
+    private function doPathNotFound($function): void {
         $this->pathNotFound = $function;
     }
 
 
-
-    private function doMethodNotAllowed($function) {
+    private function doMethodNotAllowed($function): void {
         $this->methodNotAllowed = $function;
     }
 

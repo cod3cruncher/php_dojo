@@ -18,7 +18,7 @@ interface RouteFacade
      * @param string $method the request method: get, post, put ....
      * @return nothing
      */
-    public static function add($expression, $classAtFunction, $method = 'get');
+    public static function add($expression, $classAtFunction, $method = 'get') : void;
 
     /**
      * creates routes for a CRUD Controller:
@@ -33,12 +33,12 @@ interface RouteFacade
      * @param $controllerName the name of the CrudController
      * @return nothing
      */
-    public static function resource($uri, $controllerName);
+    public static function resource($uri, $controllerName) : void;
 
     /**
      * call this at your bootstrap file to do the routing
      * @param string $basepath
      * @return mixed
      */
-    public static function run($basepath = '/');
+    public static function run($basepath = '/') : void;
 }

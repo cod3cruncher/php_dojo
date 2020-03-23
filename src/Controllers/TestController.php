@@ -1,6 +1,8 @@
 <?php
 namespace PHPDojo\Controllers;
 
+use PHPDojo\Helpers\DatabaseConnection;
+
 class TestController extends CrudController {
 
     public function doCreate()
@@ -15,7 +17,7 @@ class TestController extends CrudController {
 
     public function doShow($id)
     {
-        echo "I will show you the truth! " . $id;
+        echo "I will show you the truth! id: " . $id;
     }
 
     public function edit($id)
@@ -28,14 +30,20 @@ class TestController extends CrudController {
         // TODO: Implement update() method.
     }
 
-    public function destroy()
+    public function doDestroy()
     {
         // TODO: Implement destroy() method.
     }
 
-    public function index()
+    public function index() :void
     {
+        $connection = DatabaseConnection::mysqli();
+
         echo "You called index :) welcome!";
+    }
+
+    public function isLoginNeeded(): bool {
+        return false;
     }
 
 

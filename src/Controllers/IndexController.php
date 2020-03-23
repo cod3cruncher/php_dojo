@@ -6,7 +6,7 @@ use PHPDojo\Helpers;
 
 class IndexController extends Controller
 {
-    public function index() {
+    public function index() : void{
         echo Helpers\TemplateRenderer::render('SimpleSampleView.simptemp', [
                 'title' => 'Eine neue krasse Page!',
                 'message' => 'Das musst du dir reinziehn!',

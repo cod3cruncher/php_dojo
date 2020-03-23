@@ -12,8 +12,8 @@ abstract class CrudController extends Controller
         'store' => 'POST',
         'show' => 'GET',
         'edit' => 'GET',
-        'update' => 'PUT',
-        'destroy' => 'DELETE'
+        'update' => 'POST',
+        'delete' => 'GET'
     ];
 
     public final function getMethodType($methodName)
@@ -79,18 +79,31 @@ abstract class CrudController extends Controller
      * GET, /url/{item}/edit
      * @return mixed
      */
-    public abstract function edit($id);
+    public final function edit($id) {
+        $this->checkMethodType(__FUNCTION__, $_SERVER['REQUEST_METHOD']);
+        $this->doEdit($id);
+    }
+
+    public abstract function doEdit($id);
 
     /**
      * PUT/PATCH, /url/{item}
      * @return mixed
      */
-    public abstract function update();
+    public final function update() {
+        $this->checkMethodType(__FUNCTION__, $_SERVER['REQUEST_METHOD']);
+        $this->doUpdate();
+    }
 
     /**
      * DELETE, /url/{item}
      * @return mixed
      */
-    public abstract function destroy();
+    public final function delete() {
+        $this->checkMethodType(__FUNCTION__, $_SERVER['REQUEST_METHOD']);
+        $this->doDelete();
+    }
+
+    public abstract function doDelete();
 
 }

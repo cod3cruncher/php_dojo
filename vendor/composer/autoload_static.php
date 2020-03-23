@@ -28,10 +28,12 @@ class ComposerStaticInit0b5b3f8af641b5ef9fb5035846ed4fe4
         'P' => 
         array (
             'Prophecy\\' => 9,
+            'PhpOption\\' => 10,
             'PHPDojo\\' => 8,
         ),
         'D' => 
         array (
+            'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
         ),
@@ -56,9 +58,17 @@ class ComposerStaticInit0b5b3f8af641b5ef9fb5035846ed4fe4
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
+        'PhpOption\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
+        ),
         'PHPDojo\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
