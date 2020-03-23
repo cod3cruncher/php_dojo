@@ -2,8 +2,17 @@
 
 namespace PHPDojo\Classes;
 
+
 use PHPDojo\Controllers\CrudController;
 
+/**
+ * A very simple Router
+ * You can setup single routes, or use a CrudController
+ * with some predefined routes.
+ * See CrudController.php for details
+ * the idea was adapted from: https://steampixel.de/einfaches-und-elegantes-url-routing-mit-php/
+ * @package PHPDojo\Classes
+ */
 final class Route implements RouteFacade
 {
     private static $instance;
@@ -23,14 +32,36 @@ final class Route implements RouteFacade
         $this->routes = array();
     }
 
+    /**
+     * Used to add a single route, complex expressions
+     * are also allowed
+     * e.g.
+     * add('/foo/', FooController@foo;
+     * add('/foo/([0-9]*)/bar', FooController@foobar);
+     * @param simple $expression
+     * @param the $classAtFunction
+     * @param string $method
+     */
     public static function add($expression, $classAtFunction, $method = 'get'): void {
         static::instance()->doAdd($expression, $classAtFunction, $method);
     }
 
+    /**
+     * This is used for CrudControllers only.
+     * All routes for the CrudController operations are automatically defined
+     * @param the $uri
+     * @param the $controllerName
+     * @throws \Exception
+     */
     public static function resource($uri, $controllerName): void {
         static::instance()->doRessource($uri, $controllerName);
     }
 
+    /**
+     * Call this in your bootstrap file
+     * The route is parsed here
+     * @param string $basepath
+     */
     public static function run($basepath = '/'): void {
         static::instance()->doRun($basepath);
     }
@@ -55,6 +86,12 @@ final class Route implements RouteFacade
         ));
     }
 
+    /**
+     * The routes for the CrudController
+     * @param $uri
+     * @param $controllerName
+     * @throws \ReflectionException
+     */
     private final function doRessource($uri, $controllerName): void {
         $controller = ControllerContainer::instance()->getController($controllerName);
         if (is_a($controller, 'PHPDojo\Controllers\CrudController')) {
@@ -166,5 +203,4 @@ final class Route implements RouteFacade
     private function doMethodNotAllowed($function): void {
         $this->methodNotAllowed = $function;
     }
-
 }

@@ -1,6 +1,13 @@
 <?php
 namespace PHPDojo\Helpers;
 
+/**
+ * Class TemplateRenderer
+ * This is the template render 'engine'
+ *
+ * @package PHPDojo\Helpers
+ */
+
 class TemplateRenderer {
 
     public const ENDING = '.simptemp';

@@ -5,6 +5,14 @@ class StringHelper {
 
     private function __construct() {}
 
+    /**
+     * checks if a string ends with
+     *
+     * @param $toTest
+     * @param $end
+     * @param bool $isCaseSensitive
+     * @return bool
+     */
     public static function endsWith($toTest, $end, $isCaseSensitive = true) {
         if(!$isCaseSensitive) {
             $toTest = strtolower($toTest);

@@ -4,8 +4,18 @@ namespace PHPDojo\Controllers;
 
 use phpDocumentor\Reflection\Types\Array_;
 
+/**
+ * A CrudController has predefined operations
+ * for Create, Read, Update, Delete
+ *
+ * @package PHPDojo\Controllers
+ */
+
 abstract class CrudController extends Controller
 {
+    /**
+     * maps the operation with the action
+     */
      public const METHOD_NAME_MAP = [
          'index' => 'GET',
         'create' => 'GET',
@@ -37,7 +47,6 @@ abstract class CrudController extends Controller
             throw new \Exception("Wrong type is used!");
         }
     }
-
 
     /**
      * GET method, /url/create/  create action

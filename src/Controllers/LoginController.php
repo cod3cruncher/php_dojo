@@ -5,6 +5,11 @@ namespace PHPDojo\Controllers;
 use PHPDojo\Helpers;
 use PHPDojo\Models\User;
 
+/**
+ * The LoginController is responsible for the login
+ * and logout
+ * @package PHPDojo\Controllers
+ */
 class LoginController extends Controller
 {
     public function index() : void{

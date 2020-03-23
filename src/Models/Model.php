@@ -4,6 +4,11 @@ namespace PHPDojo\Models;
 
 use PHPDojo\Helpers\DatabaseConnection;
 
+/**
+ * A model represents a table in the database
+ * @package PHPDojo\Models
+ */
+
 abstract class Model implements ModelFacade
 {
     public abstract function save();
@@ -13,12 +18,7 @@ abstract class Model implements ModelFacade
     public abstract static function getTableName(): string;
 
     private $data;
-//
-//    public static function getTableName() {
-//        $class_parts = explode('\\', get_called_class());
-//        $withoutNamespace = end($class_parts);
-//        return strtolower($withoutNamespace) . 's';
-//    }
+
 
     protected final function setValueForKey($key, $value) {
         if ($this->data == null) {

@@ -8,6 +8,13 @@ use PHPDojo\Models\TodoList;
 use PHPDojo\Models\TodoListItem;
 use PHPDojo\Models\User;
 
+/**
+ * Class TodoListController
+ * Here is all the logic for the TodoList
+ * New Lists can be created, renamed or deleted
+ * and you can add new items to a list or remove items
+ * @package PHPDojo\Controllers
+ */
 class TodoListController extends CrudController
 {
     public const UPDATE_ACTION_ADD_ITEM = 'add_item';
@@ -37,6 +44,10 @@ class TodoListController extends CrudController
         // TODO: Implement doStore() method.
     }
 
+    /**
+     * Shows the list for the id
+     * @param $id
+     */
     public function doShow($id) {
         echo TemplateRenderer::render('Dashboard.simptemp', [
             'user' => $_SESSION['user'],

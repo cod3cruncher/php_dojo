@@ -126,13 +126,6 @@ class User extends Model
         $this->setValueForKey(self::NAME_NAME, trim($name));
     }
 
-//    /**
-//     * returns the password, hashed
-//     */
-//    public function getPassword() : string {
-//        return $this->getValueForKey(self::NAME_PASSWORD);
-//    }
-
     /**
      * @param string $password the hashed password
      */
@@ -189,6 +182,4 @@ class User extends Model
     public static function create($data): void {
         // TODO: Implement create() method.
     }
-
-
 }

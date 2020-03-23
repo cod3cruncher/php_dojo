@@ -14,4 +14,10 @@ class IndexController extends Controller
             ]
         );
     }
+
+    public function isLoginNeeded(): bool {
+        // TODO: Implement isLoginNeeded() method.
+    }
+
+
 }

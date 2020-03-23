@@ -5,6 +5,14 @@ namespace PHPDojo\Helpers;
 
 use PHPDojo\Helpers\Configuration;
 
+/**
+ * Class DatabaseConnection
+ * Helper class for db connections
+ *
+ * Will be replaced by PDO soon (better Exception handling)
+ * @package PHPDojo\Helpers
+ */
+
 final class DatabaseConnection
 {
     private static $instance = null;
@@ -34,5 +42,4 @@ final class DatabaseConnection
     public static function close() {
         static::instance()->mysqli()->close();
     }
-
 }
