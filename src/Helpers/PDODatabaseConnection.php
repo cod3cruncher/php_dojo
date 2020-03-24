@@ -20,7 +20,7 @@ final class PDODatabaseConnection
 
     private $db;
 
-    private static function instance() : DatabaseConnection {
+    private static function instance() : PDODatabaseConnection {
         if(static::$instance == null) {
             static::$instance = new static();
         }
@@ -32,8 +32,6 @@ final class PDODatabaseConnection
             ';host=' . Configuration::instance()->getDatabaseHost();
         $user = Configuration::instance()->getDatabaseUser();
         $password = Configuration::instance()->getDatabasePassword();
-
-        error_log("Test");
 
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
