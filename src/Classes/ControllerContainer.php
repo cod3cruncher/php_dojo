@@ -22,7 +22,7 @@ final class ControllerContainer
         $this->controllers = array();
     }
 
-    public function instance() : ControllerContainer
+    public static function instance() : ControllerContainer
     {
         if (static::$instance === null) {
             static::$instance = new static();
