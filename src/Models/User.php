@@ -3,6 +3,9 @@
 namespace PHPDojo\Models;
 
 use PHPDojo\Helpers\DatabaseConnection;
+use PHPDojo\Helpers\PDODatabaseConnection;
+use function PHPUnit\Framework\callback;
+use \PDOException;
 
 /***
  * Represents a User in the Db
@@ -46,6 +49,23 @@ class User extends Model
     }
 
     public final static function find($id) {
+//        try {
+//            $sql = 'SELECT * FROM ' . self::getTableName() . ' WHERE ' . self::COLUMN_ID . '=:id;';
+//            $stmt = PDODatabaseConnection::db()->prepare($sql);
+//            $stmt->execute([':id' => $id]);
+//            var_dump($stmt->fetch()); exit;
+//            if ($row = $stmt->fetch()) {
+//                $user = new User();
+//                $user->setId($row[self::COLUMN_ID]);
+//                $user->setName($row[self::COLUMN_NAME]);
+//                $user->setPassword($row[self::COLUMN_PASSWORD]);
+//                return $user;
+//            }
+//        } catch (PDOException $pde) {
+//            error_log("Something went wrong!");
+//        }
+
+
         $sql = 'SELECT * FROM ' . self::getTableName() . ' WHERE ' . self::COLUMN_ID . '=?;';
         $stmt = DatabaseConnection::mysqli()->prepare($sql);
         $stmt->bind_param('i', $id);

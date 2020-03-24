@@ -4,7 +4,7 @@
 namespace PHPDojo\Helpers;
 
 
-class Configuration
+final class Configuration
 {
     private static $instance = null;
 
@@ -40,4 +40,7 @@ class Configuration
         return getenv('DATABASE_NAME');
     }
 
+    public function getDatabaseTyp() {
+        return getenv('DATABASE_TYPE');
+    }
 }

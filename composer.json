@@ -17,6 +17,7 @@
   "require": {
     "phpunit/phpunit": "^9.0",
     "ext-json": "*",
-    "vlucas/phpdotenv": "^4.1"
+    "vlucas/phpdotenv": "^4.1",
+    "ext-PDO": "^7.4"
   }
 }
